@@ -92,3 +92,32 @@ New functions added and modified for PA4:
 
 15. event_loop(): Runs the broker's event loop, reporting load status to the Discovery service every 5 seconds.
 
+### For SubscriberMW,
+
+1. handle_load_balanced_publishers(): to do load balancing
+
+2. matching(): Add the matching method to take history QoS into account
+
+### I have updated disseminate method for PublisherMW. The disseminate method updates history for QoS.
+
+### For QoS, I have made a Qos.py file.
+
+This is a class that defines Quality of Service (QoS) parameters for message delivery. It has an __init__ method that initializes the QoS parameters, an update_qos method to update the parameters, and a __str__ method to represent the QoS parameters as a string. The history_size, reliability, durability, and deadline parameters can be set and updated through the update_qos method. The __str__ method returns a string representation of the QoS object with its current parameters.
+
+## How to test this software
+
+1. First start Zookeeper (after downloading this GitHub repository)
+```
+cd zookeeper/bin
+sudo zkServer.sh start
+source zkCli.sh
+```
+
+2. Run exp_generator.py for testing.
+```
+python3 exp_generator.py -P 3 -S 3 -B 3 -D 3
+```
+3. To stop Zookeper
+```
+sudo bin/zkServer.sh stop
+```
