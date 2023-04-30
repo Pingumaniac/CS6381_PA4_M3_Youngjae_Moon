@@ -1,0 +1,9 @@
+h1 /opt/zookeeper/bin/zkServer.sh start-foreground > tests/logs/zk1.txt 2>&1 &
+h9 export PYTHONPATH=$PWD && python3 src/broker/broker.py -p 8888 > tests/logs/broker1.txt 2>&1 &
+h11 export PYTHONPATH=$PWD && python3 src/broker/broker.py -p 8888 > tests/logs/broker2.txt 2>&1 &
+h13 export PYTHONPATH=$PWD && python3 src/discovery/discovery.py -n disc1 -a 10.0.0.13 -p 5555 > tests/logs/disc1.txt 2>&1 &
+h16 export PYTHONPATH=$PWD && python3 src/discovery/discovery.py -n disc2 -a 10.0.0.16 -p 5555 > tests/logs/disc2.txt 2>&1 &
+h13 export PYTHONPATH=$PWD && python3 src/publisher/publisher.py -n pub1 -a 10.0.0.13 -p 7777 -T 9 > tests/logs/pub1.txt 2>&1 &
+h15 export PYTHONPATH=$PWD && python3 src/publisher/publisher.py -n pub2 -a 10.0.0.15 -p 7777 -T 9 > tests/logs/pub2.txt 2>&1 &
+h2 export PYTHONPATH=$PWD && python3 src/subscriber/subscriber.py -n sub1 -T 6 -R 2-2-2 > tests/logs/sub1.txt 2>&1 &
+h20 export PYTHONPATH=$PWD && python3 src/subscriber/subscriber.py -n sub2 -T 5 -R 2-2-2 > tests/logs/sub2.txt 2>&1 &
